@@ -1,4 +1,4 @@
-
+from sys import stdin
 import math
 
 
