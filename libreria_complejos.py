@@ -21,12 +21,12 @@ def multiplicarcmplx(c1, c2):
 
 
 def divisioncmplx(c1, c2):
-    real = multiplicarcmplx(c1, conjugadocmplx(c1))
-    img = multiplicarcmplx(c2, conjugadocmplx(c1))
-    real = list(real)
-    img = list(img)
-    resultado = (real[0] / img[0], real[1] / img[0])
-    return (resultado)
+    real = (c1[0]*c2[0] + c1[1]*c2[1])/(c2[0]**2 + c2[1]**2)
+    img = (c1[1]*c2[0] - c1[0] * c2[1])/c2[0]**2 + c2[1]**2)
+    
+   
+    return (real, img)
+
 
 
 def modulocmplx(c1):
@@ -40,11 +40,7 @@ def conjugadocmplx(c1):
 
 
 def carteapolar(c1):
-    mod = modulocmplx(c1)
-    mod = int(mod)
-    tan = math.atan2(c1[0], c1[1])
-    grados = math.degrees(tan)
-    grados = int(grados)
+    modulo = (c1[0]**2+c1[1]**2)**0.5
     return (mod, grados)
 
 
@@ -56,8 +52,20 @@ def polaracarte(c1,c2):
 
 def fase(c1):
     b = math.atan(c1[1] / c1[0])
-    c = math.degrees(b)
-    return (c)
-
+   
+    return (b)
+if __name__=="__main__":
+    c1 = (3.5, 5.7)
+    c2 = (2.80, 4.76)
+    print(sumacomplx(c1,c2))
+    print(restacmplx(c1,c2))
+    print(multiplicarcmplx(c1,c2))
+    print(divisioncmplx(c1, c2))
+    print(modulocmplx(c1))
+    print(conjugadocmplx(c1))
+    print(carteapolar(c1))
+    print(polaracarte(c1,c2))
+    print(fase(c1))
+    
 
  
