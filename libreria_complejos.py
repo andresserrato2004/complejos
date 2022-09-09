@@ -1,4 +1,4 @@
-from sys import stdin
+
 import math
 
 
@@ -71,8 +71,8 @@ def main():
     "para ingresar  carteapolar el signo que se debe colocar es polar"
     "para ingresar polaracarte el signo que se debe colocar es carte"
     "para ingresar la fase el signo que se debe colocar es  fase"
-    num1 = [int(x) for x in stdin.readline().strip().split()]
-    num2 = [int(x) for x in stdin.readline().strip().split()]
+    num1 = [int(x) for x in input().strip().split()]
+    num2 = [int(x) for x in input().strip().split()]
     signo = str(stdin.readline().strip())
 
     if signo == "+":
