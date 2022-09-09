@@ -1,6 +1,43 @@
+import collections
+from operator import le
+from tkinter.tix import COLUMN
+from xml.dom.minidom import Identified
 import libreria_complejos as LC
 import math
 
+
+
+def crear_matriz (m1,m2):
+
+    "recibe dos matrices y crea un matriz  en donde su resultado estara compuesta por ceros "
+    
+    
+    matriz= []
+    filas = len(m1)
+    columnas = len (m2)
+    for i in range(filas):
+        matriz.append([[0,0]]*columnas)
+    return matriz
+def crear_matriz1 (filas, columnas):
+
+    "recibe el numero de filas y de columnas y  "
+    matriz= []
+    filas = len(m1)
+    columnas = len (m2)
+    for i in range(filas):
+        matriz.append([[0,0]]*columnas)
+    return matriz    
+def matriz_identidad(tamaño):
+
+    Identidad = crear_matriz1(tamaño,tamaño)
+    for i in range(len (Identidad)):
+        for j in range (len(Identidad)):
+            if i == j :
+                Identidad[i][j]=[1,0]
+            else:
+                Identidad[i][j]=[0,0]
+
+###########################################################################------VECTORES----###########################################################################################################################################################
 def adicion_vc(v1,v2):  #vn = vector No
     """
     La función recibe 2 vectores de números complejos y retorna su suma componente a componente.
@@ -15,9 +52,9 @@ def mult_escalar_vc (e,v1): #e = escalar
     """
     La función recibe un número escalar complejo y un vector de números complejos, luego retorna el producto o multiplicación de dicho escalar por cada una de las componentes del vector recibido.
     """
-    v1 = mult_escalar_mc(e,v1)
+    v1 = mult_e_mc(e,v1)
     return v1
-
+###############################################################################-----MATRICES----#######################################################################################################
 def adicion_mc(m1,m2):  # mn = matriz No
     """
     La función recibe dos matrices del mismo tamaño y devuelve su suma componente a componente.
@@ -107,4 +144,39 @@ def distancia_2v(v1,v2):
     rta = adicion_vc(v1,inverso_aditivo_vc(v2))
     rta1 = norma_v(rta)
     return rta1
-def
+def matriz_unitaria(m1):
+    if len(m1) == len(m1[0]):
+        m1T = adjunta_mv(m1)
+        a = producto_mc(m1,m1T)
+        identidad = matriz_identidad(len(m1T))
+        for i in range (len(m1)):
+            for j in range(len(m1)):
+                for k in range(2):
+                    if round(a[i][j][k])!= identidad [i][j][k]:
+                        return False
+            return True
+
+def matriz_herminatia(m1):
+    if len(m1) ==len (m1[0]):
+        m1T = crear_matriz1(len(m1),len(m1))
+        m1t = adjunta_mv(m1T)
+        for i in range(len(m1)):
+            for j in range(len(m1)):
+                for k in range(2):
+                    if m1[i][j][k] != m1T[i][j][k]:
+                        return False
+        return True 
+
+def producto_tensor_mv(m1,m2):
+    rta = crear_matriz1(len(m1)*len(m2),len(m1[0])*len(m2[0]))
+    for i in range(len(rta)):
+        for j in range (len(rta[0])):
+            rta[i][j] = LC.multiplicarcmplx(m1[i//len(m2[0])][j//len(m2[0])],m2[i%len(m2)][j%len(m2)])
+    return rta
+
+def main (): 
+
+    print(adicion_vc([(3,2),(3,4)],[(5,5),(4,4)]))
+
+    
+main ()
